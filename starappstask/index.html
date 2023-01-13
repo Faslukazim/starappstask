@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task</title>
+  </head>
+  <body>
+    <script>
+              function minPlanes(airports) {
+          const n = airports.length;
+          const mp = new Array(n);
+          for (let i = 0; i < n; i++) {
+              mp[i] = Number.MAX_SAFE_INTEGER;
+          }
+          mp[0] = 0;
+
+          for (let i = 0; i < n; i++) {
+              for (let j = i + 1; j < n && j <= i + airports[i]; j++) {
+                  mp[j] = Math.min(mp[j], mp[i] + 1);
+              }
+          }
+          return mp[n - 1];
+      }
+
+      const airports = [2, 1,2, 1, 1];
+      console.log(minPlanes(airports));
+      document.write(`Minimum Planes Needed: ${minPlanes(airports)} <br/><br/>`)
+      
+      document.write("Steps:-<br/>1-We'll start by initializing an array named mp that has the same length as the input array airports.<br/>2- We'll fill all the elements of mp with the value of Number.MAX_SAFE_INTEGER which represents an unreachable state.<br/>3- We will set the first element of the mp array to 0.<br/>4- Now, we'll begin iterating through the input array airports, starting from the first element.<br/>5- For each element in the array, we'll check all the airports that can be reached from the current airport using the fuel units available.<br/>6- For each reachable airport, we'll update the minimum number of planes required to reach that airport by comparing the current value with the value of the number of planes required to reach the current airport plus one. We'll take the minimum of these two values and use it to update the corresponding element in the mp array.<br/>7- Finally, we'll return the last element of the mp array which represents the minimum number of planes required to reach the last airport in the input array.")
+    </script>
+  </body>
+</html>
